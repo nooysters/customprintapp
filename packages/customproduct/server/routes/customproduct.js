@@ -1,6 +1,7 @@
 'use strict';
 
 var products = require('../controllers/products');
+var uploads = require('../controllers/trans_uploads');
 
 // Product authorization helpers
 var hasAuthorization = function(req, res, next) {
@@ -24,11 +25,12 @@ module.exports = function(Customproduct, app, auth, database) {
     // Finish with setting up the productId param
     app.param('productId', products.product);
  
-/*
-    app.post('/api/customproduct', function(req, res, next) {
-        res.send('new custom product');
-    });
 
+    app.post('/api/upload', function(req, res, next) {
+        uploads.upload(req, res);
+    });
+    
+/*
     app.get('/api/customproduct', function(req, res, next) {
         res.send('get all products');
     });

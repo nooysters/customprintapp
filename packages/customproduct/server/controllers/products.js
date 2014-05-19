@@ -21,7 +21,7 @@ exports.product = function(req, res, next, id) {
 };
 
 /**
- * Create an product
+ * Create a product
  */
 exports.create = function(req, res) {
     var product = new Product(req.body);
@@ -40,7 +40,7 @@ exports.create = function(req, res) {
 };
 
 /**
- * Update an product
+ * Update a product
  */
 exports.update = function(req, res) {
     var product = req.product;
@@ -60,7 +60,7 @@ exports.update = function(req, res) {
 };
 
 /**
- * Delete an product
+ * Delete a product
  */
 exports.destroy = function(req, res) {
     var product = req.product;
@@ -78,7 +78,7 @@ exports.destroy = function(req, res) {
 };
 
 /**
- * Show an product
+ * Show a product
  */
 exports.show = function(req, res) {
     res.jsonp(req.product);
