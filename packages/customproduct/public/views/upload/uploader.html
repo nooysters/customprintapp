@@ -1,0 +1,30 @@
+This is the uploader.
+
+<div class="row" data-ng-controller='UploadsController'>
+  <div class="js-transloadit-upload col-md-4" >
+    <form role="form" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="pick-files">Pick some files:</label>
+        <button data-ng-click="pickFile()" class="btn btn-primary js-pick-files" name="pick-files" >Pick some files</button>
+      </div>
+     {{isLoaded}}{{1+2}}
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label for="email_address">Email address:</label>
+        <input type="text" name="email_address" id="email_address" class="form-control" />
+      </div> 
+      <div class="form-group">
+        <label for="other_form_field">Another form field:</label>
+        <input type="text" name="other_form_field" id="other_form_field" class="form-control" />
+      </div>
+    
+      <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+
+  </div>
+
+
+</div>

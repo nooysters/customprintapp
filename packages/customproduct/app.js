@@ -20,7 +20,7 @@ Customproduct.register(function(app, auth, database) {
     Customproduct.menus.add({
         title: 'Admin Products',
         link: 'all products',
-        roles: ['authenticated'],
+        roles: ['administrator'],
         menu: 'main'
     });
     Customproduct.menus.add({
@@ -28,7 +28,16 @@ Customproduct.register(function(app, auth, database) {
         link: 'create product',
         menu: 'main'
     });
-
+    Customproduct.menus.add({
+        title: 'My Products',
+        link: 'create product',
+        menu: 'main'
+    });
+    Customproduct.menus.add({
+        title: 'Upload',
+        link: 'upload',
+        menu: 'main'
+    });
     /*
     //Uncomment to use. Requires meanio@0.3.7 or above
     // Save settings with callback

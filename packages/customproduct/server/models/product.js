@@ -5,6 +5,57 @@
  */
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
+    
+/**
+ * File Schema
+ */
+var FileSchema = new Schema({
+    created: {
+        type: Date,
+        default: Date.now
+    },
+    filename: {
+        type: String,
+        default: '',
+        trim: true
+    },
+    filemime: {
+        type: String,
+        default: '',
+        trim: true
+    },
+    filepath: {
+        type: String,
+        default: '',
+        trim: true
+    },
+    filesize: {
+        type: String,
+        default: '',
+        trim: true
+    },
+    pixel_width: {
+      type: Number,
+      max: 999999,
+      default: 0,
+    },
+    pixel_height: {
+      type: Number,
+      max: 999999,
+      default: 0,
+    },
+    style_id: {
+        type: String,
+        default: 'original',
+        trim: true
+    },
+    status: {
+      type: String,
+      default: 'incomplete',
+      trim: true
+    }
+});
+
 
 /**
  * Article Schema
@@ -31,7 +82,8 @@ var ProductSchema = new Schema({
     user: {
         type: Schema.ObjectId,
         ref: 'User'
-    }
+    },
+    files: [FileSchema]
 });
 
 /**
@@ -51,3 +103,4 @@ ProductSchema.statics.load = function(id, cb) {
 };
 
 mongoose.model('Product', ProductSchema);
+
