@@ -2,6 +2,7 @@
 
 var products = require('../controllers/products');
 var uploads = require('../controllers/trans_uploads');
+var inkauth = require('../controllers/filepickerauth');
 
 // Product authorization helpers
 var hasAuthorization = function(req, res, next) {
@@ -30,6 +31,10 @@ module.exports = function(Customproduct, app, auth, database) {
         uploads.upload(req, res);
     });
     
+    // Get signed policy for ink Uploader
+    app.get('/api/filepickauth', function(req, res, next) {
+        inkauth.getPolicy(req, res);
+    });
 /*
     app.get('/api/customproduct', function(req, res, next) {
         res.send('get all products');

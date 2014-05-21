@@ -1,3 +1,4 @@
+'use strict';
 /* Ink file picker encoded security policy and its signature with Node.js
  
 https://www.inkfilepicker.com/
@@ -41,4 +42,18 @@ var ink = {
     result = crypto.createHmac('sha256', secret).update(result).digest('hex');
     return result;
   }
+};
+
+var key = 'Aml0dm6FQ9OUCDMqUFq19z';
+var secret = 'TNVV52ZYOFGWZLUOXHB3EBGNCM';
+var expire = Math.floor(new Date().getTime() / 1000 + 60*60);
+var policy = {'expiry':expire, 'call':'pick'};
+
+/**
+ * Send Signed policy
+ */
+exports.getPolicy = function(req, res) {
+	var inksignature = ink.signPolicy(policy, secret);
+	var inkpolicy =  ink.encodePolicy(policy);
+    res.jsonp({'policy': inkpolicy, 'signature':inksignature, 'key': key} || null);
 };
