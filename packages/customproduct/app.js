@@ -18,9 +18,9 @@ Customproduct.register(function(app, auth, database) {
 
     //We are adding a link to the main menu for all authenticated users
     Customproduct.menus.add({
-        title: 'Admin Products',
+        title: 'My Products',
         link: 'all products',
-        roles: ['administrator'],
+        roles: ['authenticated'],
         menu: 'main'
     });
     Customproduct.menus.add({
@@ -29,16 +29,11 @@ Customproduct.register(function(app, auth, database) {
         menu: 'main'
     });
     Customproduct.menus.add({
-        title: 'My Products',
-        link: 'create product',
-        menu: 'main'
-    });
-    Customproduct.menus.add({
         title: 'Upload',
         link: 'upload',
         menu: 'main'
     });
-    /*
+    
     //Uncomment to use. Requires meanio@0.3.7 or above
     // Save settings with callback
     // Use this for saving data from administration pages
@@ -58,7 +53,7 @@ Customproduct.register(function(app, auth, database) {
     Customproduct.settings(function(err, settings) {
 	//you now have the settings object
     });
-    */
+    
    Customproduct.aggregateAsset('css', 'customproduct.css');
     
     return Customproduct;

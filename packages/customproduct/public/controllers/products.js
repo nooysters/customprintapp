@@ -44,7 +44,13 @@ angular.module('mean').controller('ProductsController', ['$scope', '$stateParams
             });
         };
 
-        $scope.find = function() {
+        $scope.findByUser = function() {
+            Products.allForUser(function(products) {
+                $scope.products = products;
+            });
+        };
+				
+				$scope.find = function() {
             Products.query(function(products) {
                 $scope.products = products;
             });
@@ -52,7 +58,7 @@ angular.module('mean').controller('ProductsController', ['$scope', '$stateParams
 
         $scope.findOne = function() {
             Products.get({
-                articleId: $stateParams.articleId
+                productId: $stateParams.productId,
             }, function(product) {
                 $scope.product = product;
             });

@@ -46,14 +46,15 @@ var ink = {
 
 var key = 'Aml0dm6FQ9OUCDMqUFq19z';
 var secret = 'TNVV52ZYOFGWZLUOXHB3EBGNCM';
-var expire = Math.floor(new Date().getTime() / 1000 + 60*60);
-var policy = {'expiry':expire, 'call':'pick'};
+
 
 /**
  * Send Signed policy
  */
 exports.getPolicy = function(req, res) {
+	var expire = Math.floor(new Date().getTime() / 1000 + 60*60);
+	var policy = {'expiry':expire, 'call':['pick','read','convert']};
 	var inksignature = ink.signPolicy(policy, secret);
 	var inkpolicy =  ink.encodePolicy(policy);
-    res.jsonp({'policy': inkpolicy, 'signature':inksignature, 'key': key} || null);
+  res.jsonp({'policy': inkpolicy, 'signature':inksignature, 'key': key} || null);
 };

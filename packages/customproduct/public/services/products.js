@@ -8,7 +8,13 @@ angular.module('mean').factory('Products', ['$resource',
 		}, {
 			update: {
 				method: 'PUT'
-			}
+			},
+			allForUser: {
+				url: 'api/productslist',
+				method: 'GET',
+				isArray: true,
+			},
+			
 		});
 	}
 ]);

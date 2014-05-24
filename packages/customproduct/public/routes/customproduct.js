@@ -57,6 +57,13 @@ angular.module('mean').config(['$stateProvider',
                 resolve: {
                     loggedin: checkLoggedin
                 }
+            })
+            .state('upload by id', {
+                url: '/upload/:pid',
+                templateUrl: 'customproduct/views/upload/uploader.html',
+                resolve: {
+                    loggedin: checkLoggedin
+                }
             });
     }
 

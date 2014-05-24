@@ -98,3 +98,18 @@ exports.all = function(req, res) {
         }
     });
 };
+
+/**
+ * List of all products for requesting user.
+ */
+exports.allForUser = function(req, res) {
+    Product.find({'user': req.user }).sort('-created').populate('user', 'name username').exec(function(err, products) {
+        if (err) {
+            res.render('error', {
+                status: 500
+            });
+        } else {
+            res.jsonp(products);
+        }
+    });
+};

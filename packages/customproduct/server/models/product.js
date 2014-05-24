@@ -54,11 +54,11 @@ var FileSchema = new Schema({
       default: 'incomplete',
       trim: true
     }
-});
+},{strict:false});
 
 
 /**
- * Article Schema
+ * Product Schema
  */
 var ProductSchema = new Schema({
     created: {
