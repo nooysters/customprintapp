@@ -64,7 +64,28 @@ angular.module('mean').config(['$stateProvider',
                 resolve: {
                     loggedin: checkLoggedin
                 }
+            }).state('type by id', {
+                url: '/admin/types/:typeId/edit',
+                templateUrl: 'customproduct/views/product_type/edit.html',
+                resolve: {
+                    loggedin: checkLoggedin
+                }
+            }).state('all types', {
+                url: '/admin/types',
+                templateUrl: 'customproduct/views/product_type/list.html',
+                resolve: {
+                    loggedin: checkLoggedin
+                }
+            }).state('create type', {
+                url: '/admin/types/create',
+                templateUrl: 'customproduct/views/product_type/create.html',
+                resolve: {
+                    loggedin: checkLoggedin
+                }
             });
+
+
+           
     }
 
 ]);

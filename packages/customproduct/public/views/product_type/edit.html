@@ -1,0 +1,66 @@
+<section data-ng-controller="ProductTypesController" data-ng-init="findOne()">
+    <h2> Edit {{type.title}} </h2>
+    <form class="form-horizontal col-md-6" role="form" data-ng-submit="update()">
+        <div class="form-group">
+            <label mean-token="'edit-title'" for="title" class="col-md-2 control-label">Title</label>
+            <div class="col-md-10">
+                <input type="text" class="form-control" data-ng-model="type.title" id="title" placeholder="Title" required>
+                <input type="text" class="form-control" data-ng-model="type.description" id="description" placeholder="Description" required>
+            </div>
+        </div>
+        <h3> Applied Options </h3>
+       
+        <div class="form-group" data-ng-repeat="option in type.type_options track by $index" >
+           {{option.title}}: {{option.description}} | <a data-ng-click="removeTypeOption($index)">remove from type</a>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button mean-token="'edit-submit'" type="submit" class="btn btn-default">Save</button>
+                {{message}}
+            </div>
+        </div>
+    </form>
+ 
+    
+</section>
+<section  data-ng-controller="ProductOptionsController" >
+   <h3> New Option </h3>
+   <form class="form-horizontal col-md-6" role="form" >
+      <input type="text" class="form-control" data-ng-model="option.title" id="option-name" placeholder="option name" required>
+      <input type="text" class="form-control" data-ng-model="option.description" id="description" placeholder="description" required>  
+      Per Quantity:<input type="checkbox" data-ng-model="option.price_per_qty"></input>
+      Select Multiple:<input type="checkbox" data-ng-model="option.select_multiple" ></input>
+      display: <select data-ng-model="option.display_type" >
+        <option>select</option>
+        <option>checkbox/radio</option>
+        <option>text area</option>
+        <option>text</option>
+      </select>
+      
+      <div class="form-group" >
+        <div class="col-md-offset-2 col-md-10" data-ng-repeat="value in option.values">
+            <input type="text" class="form-control" data-ng-model="value.title" id="option-name" placeholder="name" required>
+            <input type="text" class="form-control" data-ng-model="value.price" id="description" placeholder="price offset" required>
+            <a data-ng-click="removeOptionValue($index)" >remove</a>
+        </div>
+        <button data-ng-click="addOptionValue()" >+</button>
+      </div>
+
+      <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button mean-token="'edit-submit'" type="submit" class="btn btn-default" data-ng-click="init()" >Reset</button>
+            <button mean-token="'edit-submit'" type="submit" class="btn btn-default" data-ng-click="create()" data-ng-show="newOption">Create</button>
+            <button mean-token="'edit-submit'" type="submit" class="btn btn-default" data-ng-click="update()" data-ng-hide="newOption">Update</button>
+        </div>
+      </div>
+    </form>
+    <div>
+      <h3>Available options</h3>
+      <div data-ng-repeat="option in options">
+       {{option.title}}: {{option.description}} | 
+       <a data-ng-click="edit(option)">edit</a> | 
+       <a data-ng-click="remove(option)">remove</a> |
+       <a data-ng-click="addTypeOption(option)">add to type</a>
+      </div>
+    </div>
+</section>

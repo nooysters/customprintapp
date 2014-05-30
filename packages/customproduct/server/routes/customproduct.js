@@ -3,6 +3,8 @@
 var products = require('../controllers/products');
 var uploads = require('../controllers/service_uploads');
 var inkauth = require('../controllers/filepickerauth');
+var types = require('../controllers/product_types');
+var options = require('../controllers/product_options');
 
 // Product authorization helpers
 var hasAuthorization = function(req, res, next) {
@@ -15,8 +17,9 @@ var hasAuthorization = function(req, res, next) {
 // The Package is past automatically as first parameter
 module.exports = function(Customproduct, app, auth, database) {
     
+    // Product Routes.
     app.route('/api/products')
-        .get(products.all)
+        .get(auth.requiresAdmin, products.all)
         .post(auth.requiresLogin, products.create);
     app.route('/api/products/:productId')
         .get(products.show)
@@ -24,7 +27,26 @@ module.exports = function(Customproduct, app, auth, database) {
         .delete(auth.requiresLogin, hasAuthorization, products.destroy);
 		app.route('/api/productslist')
 				.get(auth.requiresLogin, products.allForUser);
-				
+		
+		//Product Type Admin Routes.
+		app.route('/admin/types')
+        .get(auth.requiresAdmin, types.all)
+        .post(auth.requiresAdmin, types.create);
+    app.route('/admin/types/:typeId')
+        .get(auth.requiresAdmin, types.show)
+        .put(auth.requiresAdmin, types.update)
+        .delete(auth.requiresAdmin, types.destroy);
+        
+    app.route('/admin/options')
+        .get(auth.requiresAdmin, options.all)
+        .post(auth.requiresAdmin, options.create);
+    app.route('/admin/options/:optionId')
+        .get(auth.requiresAdmin, options.show)
+        .put(auth.requiresAdmin, options.update)
+        .delete(auth.requiresAdmin, options.destroy);
+
+		
+		// Uploader Routes.
     app.post('/api/upload', function(req, res, next) {
         uploads.upload(req, res);
     });
@@ -39,6 +61,8 @@ module.exports = function(Customproduct, app, auth, database) {
     
     // Finish with setting up the productId param
     app.param('productId', products.product);
+    app.param('typeId', types.ProductType);
+    app.param('optionId', options.ProductOption);
 
 /*
     app.get('/api/customproduct', function(req, res, next) {

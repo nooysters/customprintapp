@@ -1,0 +1,13 @@
+<section data-ng-controller="ProductTypesController" data-ng-init="find()">
+  <a href="/#!/admin/types/create">Create a new product type</a>
+    <ul class="types unstyled">
+        <li data-ng-repeat="type in types">
+            <span>{{types.created | date:'medium'}}</span>
+            
+            <h2><a data-ng-href="#!admin/types/{{type._id}}/edit">{{type.title}}</a></h2>
+            <div>{{type}}</div>
+            <button data-ng-click="remove(type)" >remove </button>
+        </li>
+    </ul>
+    <h1 data-ng-hide="!types || types.length">No types yet. <br> Why don't you <a href="/#!/admin/types/create">Create One</a>?</h1>
+</section>

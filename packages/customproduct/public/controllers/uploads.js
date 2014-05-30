@@ -43,7 +43,8 @@ angular.module('mean').controller('UploadsController', ['$scope', '$stateParams'
 					
 						filepicker.pick(options,
 						    function(InkBlob) {
-						    	$scope.filePreview =  InkBlob.url+'/convert?w=200&h=200&fit=clip&signature='+ data.signature + '&policy='+ data.policy;
+						      var preview = InkBlob.url+'/convert?w=200&h=200&fit=clip&signature='+ data.signature + '&policy='+ data.policy;
+						    	$scope.filePreview =  preview;
 						      Upload({image:InkBlob, params: $stateParams, auth:data});
 						    },
 						    function(FPError) {

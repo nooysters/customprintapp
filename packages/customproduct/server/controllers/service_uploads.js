@@ -20,7 +20,7 @@ var setFiles = function(prod, files) {
         console.log(err);
                 
       } else {
-        console.log(product);
+        console.log('Product files saved for product ' + product._id);
       }
   });
 };
@@ -33,60 +33,63 @@ var UUID = function() {
     });
 }
 */
-exports.upload = function(req, res) {  
+exports.upload = function(req, res) { 
+ 
    var image = req.body.image;
+   
    blitline.addJob({
-        'application_id': applicationID,
-        'src': req.body.image.url+'?signature='+req.body.auth.signature+'&policy='+req.body.auth.policy,
-        'postback_url': 'http://customprint.ngrok.com/api/upload_processed/'+'?productId='+ req.body.params.pid,
-        'postback_headers': {'pid': req.body.params.pid},
-        'wait_for_s3': true,
-        'functions': [ 
-          {
-            'name': 'no_op',
-            'params': {
-             },
-            'save': {
-              'image_identifier': 'original_' + image.filename,
-              's3_destination' : {
-                'bucket' : 'custom_products',
-                'key' : 'original_' + image.filename
-               }
+      'application_id': applicationID,
+      'src': req.body.image.url+'?signature='+req.body.auth.signature+'&policy='+req.body.auth.policy,
+      'postback_url': 'http://customprint.ngrok.com/api/upload_processed/'+'?productId='+ req.body.params.pid,
+      'postback_headers': {
+        'pid': req.body.params.pid
+      },
+      'wait_for_s3': true,
+      'pre_process': {
+        'move_original': {
+            's3_destination': {
+                'bucket': 'custom_products',
+                'key': 'original_'+ image.filename
+
+            }
+        }
+      },
+      'functions':[ 
+        {
+          'name': 'resize_to_fit',
+          'params': {
+              'width': 600,
+              'height': 600
+          },
+          'save': {
+            'image_identifier': 'large_' + image.filename,
+            's3_destination' : {
+              'bucket' : 'custom_products',
+              'key' : 'large_' + image.filename
              }
-	         },
-         	{
-            'name': 'resize_to_fit',
-            'params': {
-                'width': 600,
-                'height': 600,
-            },
-            'save': {
-              'image_identifier': 'large_' + image.filename,
-              's3_destination' : {
-                'bucket' : 'custom_products',
-                'key' : 'large_' + image.filename
-               }
-             }
-	         }
-	       ],
+           }
+         }
+       ]
     });
 
     blitline.postJobs(function(response) {
-      console.log('yaya');
+      console.log('posting job. Please wait...');
     }); 
 };
  
 // Gets blitline postback data and saves it to the product.
 exports.uploadProcess = function(req, res) {
-	var files = req.body;
-	
-	if(req.body.errors) {
-		console.log(res.errors);
+  var results = JSON.parse(req.body.results);
+  if(results.images[0].error) {
+		console.log('there was an error processing the file!');
 		return;
 	}
-	
+
+	var files = req.body;
+	var pid = req.query.productId;
+		
 	var product;
-  if(!req.query.productId) {
+  if(!pid) {
 	  product = new Product({title: 'fjidsjf'});
 	  product.user = req.user;
 	  product.save(function(err) {
@@ -97,12 +100,9 @@ exports.uploadProcess = function(req, res) {
 		});
   }
   else {
-  	Product.load(req.query.productId,  function(err, prod){
+  	Product.load(pid,  function(err, prod) {
 	  	if(err) return res.jsonp('Something went wrong!');
-	  	product = prod;
-	  	setFiles(product,files);
+	  	setFiles(prod,files);
   	});
   }
- 
-
 };

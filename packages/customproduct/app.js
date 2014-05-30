@@ -34,6 +34,14 @@ Customproduct.register(function(app, auth, database) {
         menu: 'main'
     });
     
+    // Add to the admin menu for admins only.
+    Customproduct.menus.add({
+        title: 'Product Types',
+        link: 'all types',
+        roles: ['admin'],
+        menu: 'admin'
+    });
+    
     //Uncomment to use. Requires meanio@0.3.7 or above
     // Save settings with callback
     // Use this for saving data from administration pages
