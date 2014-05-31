@@ -1,3 +1,4 @@
+
 <div class="navbar-header">
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".bs-example-navbar-collapse-1">
         <span class="sr-only">Toggle navigation</span>
@@ -49,6 +50,7 @@
   <div class="account">
     <div class="text-edit">
       <div class="pull-right" data-ng-show="global.authenticated" mean-token-editable></div>
+      <div class="pull-right" data-ng-show="global.authenticated" mean-translate></div>
     </div>
     <ul class="navbar-nav nav " data-ng-hide="global.authenticated">
         <li><a ui-sref='auth.register'>Register</a>
