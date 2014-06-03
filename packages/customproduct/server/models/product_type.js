@@ -47,7 +47,7 @@ ProductTypeSchema.path('title').validate(function(title) {
  * Middleware
  */
 ProductTypeSchema.pre('save', function(next){
-  this.type_options =  this.type_options.map(function(option) { return option._id; });
+  this.type_options = this.type_options.map(function(option) { return option._id; });
   next();
 });
 

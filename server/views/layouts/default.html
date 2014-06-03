@@ -3,12 +3,14 @@
 {% include '../includes/head.html' %}
 
 <body>
+
     <div class="container">
-        <div class="row">
-            <nav class="navbar navbar-default" data-ng-include="'/public/system/views/header.html'" data-role="navigation"></nav>
-        </div>
+         <div class="row">
+             <nav class="navbar navbar-default" data-ng-include="'/public/system/views/header.html'" data-role="navigation"></nav>
+         </div>
     </div>
-    {% if adminEnabled() %}
+    {% if adminEnabled %}
+
     <section class="admin-menu">
         <div data-ng-include="'/mean-admin/views/index.html'"></div>
     </section>
