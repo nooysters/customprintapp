@@ -3,7 +3,7 @@
         <li data-ng-repeat="product in products">
             <span>{{product.created | date:'medium'}}</span> /
             <span>{{product.user.name}}</span>
-            <h2><a data-ng-href="#!/products/{{product._id}}">{{product.title}}</a></h2>
+            <h2><a data-ng-href="#!/products/{{product._id}}/edit">{{product.title}}</a></h2>
             <div>{{product}}</div>
         </li>
     </ul>

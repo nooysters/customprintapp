@@ -67,12 +67,12 @@ module.exports = function(grunt) {
             }
         },
         nodemon: {
-            dev: {
+					dev: {
                 script: 'server.js',
                 options: {
                     args: [],
-                    ignore: ['public/**', 'node_modules/**'],
-                    ext: 'js,html',
+                    ignore: ['public/system/lib/**', 'test/coverage/**', 'node_modules/**'],
+                    ext: 'js,html,css',
                     nodeArgs: ['--debug'],
                     delayTime: 1,
                     env: {

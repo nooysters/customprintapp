@@ -1,16 +1,17 @@
 'use strict';
 
-angular.module('mean').controller('ProductsController', ['$scope', '$stateParams', '$location', 'Global', 'Products',
-    function($scope, $stateParams, $location, Global, Products) {
+angular.module('mean').controller('ProductsController', ['$scope', '$stateParams', '$location', 'Global', 'Products', 'ProductTypes',
+    function($scope, $stateParams, $location, Global, Products, ProductTypes) {
         $scope.global = Global;
 
         $scope.create = function() {
             var product = new Products({
                 title: this.title,
-                content: this.content
+                content: this.content,
+								type: '538f5d625b81020706914338'
             });
             product.$save(function(response) {
-                $location.path('products/' + response._id);
+                $location.path('products/' + response._id + '/edit');
             });
 
             this.title = '';
@@ -50,6 +51,7 @@ angular.module('mean').controller('ProductsController', ['$scope', '$stateParams
             });
         };
 				
+		
 				$scope.find = function() {
             Products.query(function(products) {
                 $scope.products = products;

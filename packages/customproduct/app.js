@@ -63,6 +63,7 @@ Customproduct.register(function(app, auth, database) {
     });
     
    Customproduct.aggregateAsset('css', 'customproduct.css');
+	 Customproduct.aggregateAsset('js', 'jquery.min.js'); 
     
     return Customproduct;
 });
