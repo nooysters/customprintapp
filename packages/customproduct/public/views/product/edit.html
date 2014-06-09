@@ -1,21 +1,29 @@
-<section data-ng-controller="ArticlesController" data-ng-init="findOne()">
-    <form class="form-horizontal col-md-6" role="form" data-ng-submit="update()">
-        <div class="form-group">
-            <label mean-token="'edit-title'" for="title" class="col-md-2 control-label">Title</label>
-            <div class="col-md-10">
-                <input type="text" class="form-control" data-ng-model="article.title" id="title" placeholder="Title" required>
-            </div>
-        </div>
-        <div class="form-group">
-            <label mean-token="'edit-content'" for="content" class="col-md-2 control-label">Content</label>
-            <div class="col-md-10">
-                <textarea data-ng-model="article.content" id="content" cols="30" rows="10" placeholder="Content" class="form-control" required></textarea>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <button mean-token="'edit-submit'" type="submit" class="btn btn-default">Submit</button>
-            </div>
-        </div>
-    </form>
+<section data-ng-controller="ProductsController" data-ng-init="findOne()">
+<h1>Product</h1>
+<div class="message">{{product.messages.status[product.messages.status.length-1]}}{{product.message}}</div>
+<div>{{product.title}}</div>
+<div>{{product.type}}</div>
+<div>{{product.id}}</div>
+
+<div img-crop ></div>
+<!--<img ng-src="{{product.files[currImage].large.file_path}}"/>-->
+
+<div ng-repeat="file in product.files">
+</div>
+<div>
+<div ng-model="product" ng-repeat="(key, value) in product.files">
+  <img style="cursor:pointer; display:inline; float:left" ng-click="setCurrentImage(key)" ng-src="{{value.large.file_path}}" width="100"/>
+</div>
+<br style="clear:both" />
+</div>
+<form>
+<input ng-model="product.title"></input>
+<li ng-model="product" ng-repeat="(key, value) in product">
+{{key}} -> {{value}}
+</li>
+
+<button ng-click="save()">Save</button>
+<a style="cursor: pointer" ng-click="destroy()">delete</a>
+</form>
+
 </section>

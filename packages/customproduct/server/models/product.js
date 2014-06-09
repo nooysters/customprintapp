@@ -75,9 +75,8 @@ var ProductSchema = new Schema({
         trim: true
     },
     type: {
-        type: String,
-        default: 'mural',
-        trim: true
+      type: Schema.Types.ObjectId, 
+      ref:'ProductType'
     },
     user: {
         type: Schema.ObjectId,
@@ -99,7 +98,7 @@ ProductSchema.path('title').validate(function(title) {
 ProductSchema.statics.load = function(id, cb) {
     this.findOne({
         _id: id
-    }).populate('user', 'name username').exec(cb);
+    }).populate('user', 'name username').populate('type').exec(cb);
 };
 
 mongoose.model('Product', ProductSchema);
