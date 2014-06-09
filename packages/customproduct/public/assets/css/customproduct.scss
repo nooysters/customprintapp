@@ -30,6 +30,12 @@ $grey4: #D5D5D5;
     box-shadow: 0 0 2px rgba(6, 8, 8, 0.15);
 }
 
+@mixin subtle-inset {
+        -webkit-box-shadow: inset 0px 0px 31px 1px rgba(0,0,0,0.2);
+        -moz-box-shadow: inset 0px 0px 31px 1px rgba(0,0,0,0.2);
+        box-shadow: inset 0px 0px 31px 1px rgba(0,0,0,0.2);
+}
+
 // temporarily take this out
 .messages {
     display: none;
@@ -237,6 +243,7 @@ a:hover {
     font-size:30px;
     margin-bottom: 21px;
     margin-top: 23px;
+    text-align: center;
     
 }
 
@@ -270,39 +277,39 @@ a:hover {
 }
 
 .new_mural {
-        background:#000 url(/images/new_mural.jpg)center center;   
+        background:#000 url(/public/assets/img/new_mural.jpg)center center;   
 }
 
 .new_wallpaper {
-        background:#000 url(/images/new_wallpaper.jpg)center center;
+        background:#000 url(/public/assets/img/new_wallpaper.jpg)center center;
 }
 
 .new_contactpaper {
-        background:#000 url(/images/new_contactpaper.jpg)center center;
+        background:#000 url(/public/assets/img/new_contactpaper.jpg)center center;
 }
 
 .new_decals {
-        background:#000 url(/images/new_decals.jpg)center center;
+        background:#000 url(/public/assets/img/new_decals.jpg)center center;
 }
 
 .new_temppaper {
-        background:#000 url(/images/new_temp_paper.jpg)center center;
+        background:#000 url(/public/assets/img/new_temp_paper.jpg)center center;
 }
 
 .new_canvas {
-        background:#000 url(/images/new_canvas.jpg)center center;
+        background:#000 url(/public/assets/img/new_canvas.jpg)center center;
 }
 
 .new_banner {
-        background:#000 url(/images/new_banner.jpg)center center;
+        background:#000 url(/public/assets/img/new_banner.jpg)center center;
 }
 
 .new_window {
-        background:#000 url(/images/new_window.jpg)center center;
+        background:#000 url(/public/assets/img/new_window.jpg)center center;
 }
 
 .new_notsure {
-        background:#000 url(/images/new_notsure.jpg)center center;
+        background:#000 url(/public/assets/img/new_banner.jpg)center center;
 }
 
 .product_cell {
@@ -312,19 +319,16 @@ a:hover {
     float:left;
     background-repeat:no-repeat;
     background-size:cover;
-    padding-top: 110px;
+    @include subtle-inset;
         p {
             position: relative;
+            top: 65px;
             color:$dyw_dblue;
             background:white;
-            margin: 0 auto;
             width: intrinsic;  
             width: -moz-max-content;
-            padding: 8px 10px;
-            font-size: 22px;
-            -webkit-box-shadow: 0 0 2px rgba(6,8,8,0.15);
-            -moz-box-shadow: 0 0 2px rgba(6,8,8,0.15);
-            box-shadow: 0 0 2px rgba(6,8,8,0.15);      
+            padding: 7px 18px;
+            font-size: 22px;      
         }
 }
 
