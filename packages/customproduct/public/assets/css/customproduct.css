@@ -176,44 +176,44 @@ a:hover {
 
 .step3custom .main-content {
   padding-bottom: 0; }
-
+/*
 .new_mural {
-  background: black url(/public/assets/img/new_mural.jpg) center center; }
+  background: black url(/customproduct/assets/img/new_mural.jpg) center center; }
 
 .new_wallpaper {
-  background: black url(/public/assets/img/new_wallpaper.jpg) center center; }
+  background: black url(/customproduct/assets/img/new_wallpaper.jpg) center center; }
 
 .new_contactpaper {
-  background: black url(/public/assets/img/new_contactpaper.jpg) center center; }
+  background: black url(/customproduct/assets/img/new_contactpaper.jpg) center center; }
 
 .new_decals {
-  background: black url(/public/assets/img/new_decals.jpg) center center; }
+  background: black url(/customproduct/assets/img/new_decals.jpg) center center; }
 
 .new_temppaper {
-  background: black url(/public/assets/img/new_temp_paper.jpg) center center; }
+  background: black url(/customproduct/assets/img/new_temp_paper.jpg) center center; }
 
 .new_canvas {
-  background: black url(/public/assets/img/new_canvas.jpg) center center; }
+  background: black url(/customproduct/assets/img/new_canvas.jpg) center center; }
 
 .new_banner {
-  background: black url(/public/assets/img/new_banner.jpg) center center; }
+  background: black url(/customproduct/assets/img/new_banner.jpg) center center; }
 
 .new_window {
-  background: black url(/public/assets/img/new_window.jpg) center center; }
+  background: black url(/customproduct/assets/img/new_window.jpg) center center; }
 
 .new_notsure {
-  background: black url(/public/assets/img/new_banner.jpg) center center; }
-
-.product_cell {
+  background: black url(/customproduct/assets/img/new_notsure.jpg) center center; }
+*/
+.product_cell  {
   width: 275px;
   height: 275px;
   margin: 0 2px 2px 0;
   float: left;
-  background-repeat: no-repeat;
-  background-size: cover;
-  -webkit-box-shadow: inset 0px 0px 31px 1px rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: inset 0px 0px 31px 1px rgba(0, 0, 0, 0.2);
-  box-shadow: inset 0px 0px 31px 1px rgba(0, 0, 0, 0.2); }
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  -webkit-box-shadow: inset 0 0 31px 1px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: inset 0 0 31px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 0 31px 1px rgba(0, 0, 0, 0.2); }
   .product_cell p {
     position: relative;
     top: 65px;

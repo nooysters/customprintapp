@@ -24,6 +24,16 @@ var ProductTypeSchema = new Schema({
         default: '',
         trim: true
     },
+    image_file_name: {
+        type: String,
+        default: '',
+        trim: true
+    },
+    weight: {
+        type: Number,
+        default: 0,
+        trim: true
+    },
     description: {
         type: String,
         default: '',

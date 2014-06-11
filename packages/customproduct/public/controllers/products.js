@@ -3,15 +3,20 @@
 angular.module('mean').controller('ProductsController', ['$scope', '$stateParams', '$location', 'Global', 'Products', 'ProductTypes',
     function($scope, $stateParams, $location, Global, Products, ProductTypes) {
         $scope.global = Global;
-
-        $scope.create = function() {
+        
+        $scope.findTypes = function() {
+            ProductTypes.query(function(types) {
+                $scope.types = types;
+            });
+        };
+        
+        $scope.create = function(typeId) {
             var product = new Products({
-                title: this.title,
-                content: this.content,
-								type: '538f5d625b81020706914338'
+                title: 'Untitled',
+								type: typeId
             });
             product.$save(function(response) {
-                $location.path('products/' + response._id + '/edit');
+                $location.path('upload/' + response._id);
             });
 
             this.title = '';
