@@ -4,8 +4,8 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
-
+    Schema = mongoose.Schema,
+    TypeOptionsSchema = mongoose.model('ProductOption').schema;
 
 /**
  * Product Type Schema
@@ -39,10 +39,7 @@ var ProductTypeSchema = new Schema({
         default: '',
         trim: true
     },
-    type_options: [{
-      type: Schema.Types.ObjectId, 
-      ref:'ProductOption'
-    }],
+    type_options: [TypeOptionsSchema],
     
 });
 
@@ -56,19 +53,21 @@ ProductTypeSchema.path('title').validate(function(title) {
 /**
  * Middleware
  */
-ProductTypeSchema.pre('save', function(next){
-  this.type_options = this.type_options.map(function(option) { return option._id; });
+/*ProductTypeSchema.pre('save', function(next){
+ // this.type_options = this.type_options.map(function(option) { return option._id; });
   next();
-});
+});*/
 
 /**
  * Statics
  */
+
 ProductTypeSchema.statics.load = function(id, cb) {
     this.findOne({
         _id: id
-    }).populate('type_options').exec(cb);
+    }).exec(cb);
 };
+
 
 mongoose.model('ProductType', ProductTypeSchema);
 

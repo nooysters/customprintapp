@@ -56,9 +56,8 @@ exports.update = function(req, res) {
                 ProductType: type
             });
         } else {
-          ProductType.findOne({_id:type._id}).populate('type_options').exec(function(err, ProductType) {
-            res.jsonp(ProductType);
-          });
+          res.jsonp(type);
+         
         }
     });
 };

@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('mean').controller('ProductTypesController', ['$scope', '$stateParams', '$location', 'Global', 'ProductTypes', 'ProductOptions',
-    function($scope, $stateParams, $location, Global, ProductTypes, ProductOption) {
+angular.module('mean').controller('ProductTypesController', ['$scope', '$stateParams', '$location', 'Global', 'ProductTypes',
+    function($scope, $stateParams, $location, Global, ProductTypes) {
         $scope.global = Global;
         
         $scope.$on('PASSOPTION', function(event, response) {
@@ -57,7 +57,7 @@ angular.module('mean').controller('ProductTypesController', ['$scope', '$statePa
             type.updated = new Date().getTime();
 
             type.$update({typeId: $stateParams.typeId}, function() {
-              //$scope.findOne();
+              $scope.findOne();
                 //$location.path('types/' + type._id);
             });
         };
