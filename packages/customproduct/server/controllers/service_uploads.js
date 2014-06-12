@@ -78,6 +78,7 @@ exports.upload = function(req, res) {
 
     blitline.postJobs(function(response) {
       console.log('posting job. Please wait...');
+      return res.jsonp(response); 
     }); 
 };
  
