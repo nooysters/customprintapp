@@ -19,10 +19,13 @@ scale:<input id="scale" />
 
 
 
-<div id="mural-stage-wrap" class="clearfix" data-ng-init="wallStyleValues = {width:600, height:480, scale:100, overflow:hidden}" > <!-- style="height:auto; width:auto; padding-left:60px;"-->
+<div class="mural-stage-wrap" class="clearfix" data-ng-init="wallStyleValues = {width:600, height:480, scale:100, overflow:hidden}" > <!-- style="height:auto; width:auto; padding-left:60px;"-->
 	
 	scale:<input class="wall-input" id="scale" data-ng-model="wallStyleValues.scale"/>
-	<button id="wall-reset" data-ng-click="init()">reset</button>{{message}}
+	<button id="wall-reset" data-ng-click="init()">reset</button>
+  <button data-ng-click="zoomIn()" >+</button>
+  <button data-ng-click="zoomOut()" >-</button>
+	{{message}}
 
     <div class="mural-stage-wall" >  <!--style="height:auto; width:auto;"-->
     

@@ -10,8 +10,10 @@ angular.module('mean').directive('imgCrop', function() {
 	    //transclude: true,
 	    link: function(scope, ele, attrs) {
 			
-	      var startX = 0, startY = 0, x = 0, y = 0; // variables to track the dragging of img.
+	      
 				var maxWallSize = 600, startWidth = 600, startHeight = 480;
+				
+				
 				scope.image={};
 			 
 		    scope.reset = function() {
@@ -28,7 +30,15 @@ angular.module('mean').directive('imgCrop', function() {
  	      	scope.imageStyle = {width: x + 'px', height: y + 'px'};
  	      }
 				
-		 
+				scope.zoomIn = function(){
+				  scope.wallStyleValues.scale ++;
+  			  getImageScale();
+				};
+				
+        scope.zoomOut = function(){
+  		    scope.wallStyleValues.scale --;
+  				getImageScale();
+				};
        
       
        
@@ -43,7 +53,6 @@ angular.module('mean').directive('imgCrop', function() {
          	  setTimeout(init, 10);
          	}
 				  else {
-				  
   				  scope.$apply(function() {
     				  setInitalWallSize();
   				  });
@@ -114,7 +123,6 @@ angular.module('mean').directive('imgCrop', function() {
 				}
 				
 	      function resizeWall(x, y) {
-	      
 	        var w =  convertDecimalFeet(x);
 	        var h =  convertDecimalFeet(y);
 	        var $height, $width;
@@ -142,9 +150,7 @@ angular.module('mean').directive('imgCrop', function() {
 	      }
       
 	      function convertDecimalFeet(string) {
-	        var re = /^(\d+)\s*[']?\s*(\d+)?\s*["]?/g; 
-	 
-					
+	        var re = /^(\d+)\s*[']?\s*(\d+)?\s*["]?/g; 					
 	        var m;
 					
 	        while ((m = re.exec(string)) !== null) {
@@ -162,7 +168,9 @@ angular.module('mean').directive('imgCrop', function() {
 						return 'error';
 	        }
 	      }
-     
+	      
+	    // handles the dragging  
+      var startX = 0, startY = 0, x = 0, y = 0; // variables to track the dragging of img.
 		  var img =  ele.find('#main-wall-image');
 		  
 	    img.css({
