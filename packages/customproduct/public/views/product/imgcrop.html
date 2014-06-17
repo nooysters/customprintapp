@@ -23,46 +23,45 @@ scale:<input id="scale" />
 	
 	scale:<input class="wall-input" id="scale" data-ng-model="wallStyleValues.scale"/>
 	<button id="wall-reset" data-ng-click="init()">reset</button>{{message}}
-   <!-- <div id="left-shadow-mural-stage">
-        <img class="img-responsive" src="/sites/all/modules/custom/custom_product/images/left_shadow.png">
-    </div>-->
-    <div id="mural-stage-wall" >  <!--style="height:auto; width:auto;"-->
+
+    <div class="mural-stage-wall" >  <!--style="height:auto; width:auto;"-->
     
           <div  class="v-wall" data-ng-style="wallStyle" > <!--style="width:600px; height:480px;"-->
 						
             <img 
 								id="main-wall-image" 
+								class= "main-wall-image"
 								data-ng-init="imageStyle = {}" 
 						 		data-ng-style="imageStyle" 
 								src="{{product.files[0].images[0].s3_url}}" 
 								class="main-img" 
 						/>
 						
-            <div id="loader"></div>
+            <div class="loader"></div>
           </div> 
           
-          <div id="left_arrow_wrapper" > <!--style="position:absolute"-->
-              <div id="leftside-arrow-box">
-                  <div id="black-top-arrow-sizer"></div>
+          <div class="left_arrow_wrapper" > <!--style="position:absolute"-->
+              <div class="leftside-arrow-box">
+                  <div class="black-top-arrow-sizer"></div>
               </div>
-              <div id="top-vertical-line"></div>
-              <div id="dimension-box-sizer-left"><input class="wall-input" id="wall-y" size="2" type="text" data-ng-model="wallStyleValues.height" /></div>
-              <div id="top-vertical-line"></div>
-              <div id="leftside-arrow-box">
-                  <div id="black-bottom-arrow-sizer"></div>
+              <div class="top-vertical-line"></div>
+              <div class="dimension-box-sizer-left"><input class="wall-input " id="wall-y" size="2" type="text" data-ng-model="wallStyleValues.height" /></div>
+              <div class="top-vertical-line"></div>
+              <div class="leftside-arrow-box">
+                  <div class="black-bottom-arrow-sizer"></div>
               </div>
           </div>
-          <div id="bottom-arrow-wrapper" >  <!--style="position:absolute"-->
-              <div id="left-arrow-box">
-                  <div id="black-left-arrow-sizer"></div>
+          <div class="bottom-arrow-wrapper" >  <!--style="position:absolute"-->
+              <div class="left-arrow-box">
+                  <div class="black-left-arrow-sizer"></div>
               </div>
-              <div id="middle-line-box">
+              <div class="middle-line-box">
               </div>
-              <div id="dimension-box-sizer-bottom"><input class="wall-input"  id="wall-x" size="2" type="text" data-ng-model="wallStyleValues.width" /></div>
-              <div id="middle-line-box">
+              <div class="dimension-box-sizer-bottom"><input class="wall-input"  id="wall-x" size="2" type="text" data-ng-model="wallStyleValues.width" /></div>
+              <div class="middle-line-box">
               </div>
-              <div id="right-arrow-box">
-                  <div id="black-right-arrow-sizer"></div>
+              <div class="right-arrow-box">
+                  <div class="black-right-arrow-sizer"></div>
               </div>    
           </div>
         </div>

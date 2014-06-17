@@ -10,7 +10,7 @@ angular.module('mean').directive('imgCrop', function() {
 	    //transclude: true,
 	    link: function(scope, ele, attrs) {
 			
-	      //var startX = 0, startY = 0, x = 0, y = 0; // variables to track the dragging of img.
+	      var startX = 0, startY = 0, x = 0, y = 0; // variables to track the dragging of img.
 				var maxWallSize = 600, startWidth = 600, startHeight = 480;
 				scope.image={};
 			 
@@ -19,7 +19,7 @@ angular.module('mean').directive('imgCrop', function() {
 		    };
 				
 				scope.setWallStyle = function(x, y) {
-					scope.wallStyle = {width: x + 'px', height: y + 'px'};
+					scope.wallStyle = {width: x + 'px', height: y + 'px', overflow: 'hidden'};
 				};
 				
  	      scope.setImageSize = function (x, y) {
@@ -30,7 +30,7 @@ angular.module('mean').directive('imgCrop', function() {
 				
 		 
        
-       var wall =  ele.find('#main-wall-image');
+      
        
        var times = 1000;
        function init() {
@@ -163,7 +163,8 @@ angular.module('mean').directive('imgCrop', function() {
 	        }
 	      }
      
-				/*
+		  var img =  ele.find('#main-wall-image');
+		  
 	    img.css({
 	     position: 'relative',
 	     cursor: 'pointer'
@@ -191,7 +192,7 @@ angular.module('mean').directive('imgCrop', function() {
 	      $(document).off('mousemove', mousemove);
 	      $(document).off('mouseup', mouseup);
 	    }
-     */
+
 		}
     
   };
