@@ -7,7 +7,7 @@ angular.module('mean').directive('imgCrop', function() {
 	    restrict: 'A',
 	    scope: true,
 	    templateUrl: 'customproduct/views/product/imgcrop.html',
-	    transclude: true,
+	    //transclude: true,
 	    link: function(scope, ele, attrs) {
 			
 	      //var startX = 0, startY = 0, x = 0, y = 0; // variables to track the dragging of img.
@@ -28,36 +28,49 @@ angular.module('mean').directive('imgCrop', function() {
  	      	scope.imageStyle = {width: x + 'px', height: y + 'px'};
  	      }
 				
-		    // Initialize the widget.
-		    function init() {
-					// set defaults
-		      scope.reset();
-		    }
-				
-	   
-				scope.$watch('product', function(nv) {
-					if(nv) {
-						if(!scope.wallStyleValues.width) setTimeout(setInitalWallSize, 3000);
-						else setInitalWallSize();
-					}
-			 	}, true);
+		 
+       
+       var wall =  ele.find('#main-wall-image');
+       
+       var times = 1000;
+       function init() {
+          if(times <= 0) {
+            scope.message = "Image load error!";
+            return;
+          }
+         	if(!scope.product && times > 1) {
+         	  times --;
+         	  setTimeout(init, 10);
+         	}
+				  else {
+				  
+  				  scope.$apply(function() {
+    				  setInitalWallSize();
+  				  });
+  				  
+  				  return;
+				  }
+       }
+       init();
+			
       	
-				scope.$watch('wallStyleValues', function(nv){
-					if(nv) {
-						scope.wallStyleValues.width = convertFeetInches(scope.wallStyleValues.width);
-						scope.wallStyleValues.height = convertFeetInches(scope.wallStyleValues.height);
-							
-						var x = scope.wallStyleValues.width, y = scope.wallStyleValues.height;
-						if(x && y) resizeWall(x, y); 
-						if(scope.product) getImageScale();  
-					}
-					else {
-						init();
-					}
-				}, true);
+				var inputs = ele.find('.wall-input');
 				
+				inputs.on('blur', function() {
+				  scope.$apply(function(){
+  				  scope.wallStyleValues.width = convertFeetInches(scope.wallStyleValues.width);
+  					scope.wallStyleValues.height = convertFeetInches(scope.wallStyleValues.height);
+  		      var x = scope.wallStyleValues.width, y = scope.wallStyleValues.height;
+  		
+  					if(x && y) resizeWall(x, y); 
+  					if(scope.product) getImageScale();  
+
+				  });
+
+									
+				});
+
 				function setInitalWallSize() {
-					
 					getImageScale();
 					while(scope.image.x * scope.image.y < 10) {
 							scope.wallStyleValues.scale ++;
@@ -69,9 +82,11 @@ angular.module('mean').directive('imgCrop', function() {
 							}
 						
 					}
-					scope.wallStyleValues.width = (scope.image.x > 2) ? scope.image.x : 2;
-					scope.wallStyleValues.height =(scope.image.y > 2) ? scope.image.y : 2;;
+				  scope.wallStyleValues.width = (scope.image.x > 2) ? scope.image.x : 2;
+					scope.wallStyleValues.height = (scope.image.y > 2) ? scope.image.y : 2;
+          resizeWall(scope.wallStyleValues.width, scope.wallStyleValues.height);
 				}
+				
 				/**
 				 * Sizes image to scale based on 72 dpi and the wall size.
 				 */
@@ -84,6 +99,7 @@ angular.module('mean').directive('imgCrop', function() {
 				function getImageScale() {
 					var wx = parseFloat(scope.wallStyleValues.width);
 					var wy = parseFloat(scope.wallStyleValues.height);
+					
 					var r1;
 					if(wx > wy) {
 					 r1 = wx;       
@@ -98,6 +114,7 @@ angular.module('mean').directive('imgCrop', function() {
 				}
 				
 	      function resizeWall(x, y) {
+	      
 	        var w =  convertDecimalFeet(x);
 	        var h =  convertDecimalFeet(y);
 	        var $height, $width;
@@ -111,7 +128,7 @@ angular.module('mean').directive('imgCrop', function() {
 	          $width = maxWallSize * (w/h);
 	        }
      		 	scope.setWallStyle($width, $height);
-	        //getImageScale();
+     		 	getImageScale();
 	      }
 				
 	      function convertFeetInches(dim) {

@@ -19,10 +19,10 @@ scale:<input id="scale" />
 
 
 
-<div id="mural-stage-wrap" class="clearfix" data-ng-init="wallStyleValues = {width:600, height:480, scale:100}" > <!-- style="height:auto; width:auto; padding-left:60px;"-->
+<div id="mural-stage-wrap" class="clearfix" data-ng-init="wallStyleValues = {width:600, height:480, scale:100, overflow:hidden}" > <!-- style="height:auto; width:auto; padding-left:60px;"-->
 	
-	scale:<input id="scale" data-ng-model="wallStyleValues.scale"/>
-	<button id="wall-reset" data-ng-click="reset()">reset</button>{{message}}
+	scale:<input class="wall-input" id="scale" data-ng-model="wallStyleValues.scale"/>
+	<button id="wall-reset" data-ng-click="init()">reset</button>{{message}}
    <!-- <div id="left-shadow-mural-stage">
         <img class="img-responsive" src="/sites/all/modules/custom/custom_product/images/left_shadow.png">
     </div>-->
@@ -46,7 +46,7 @@ scale:<input id="scale" />
                   <div id="black-top-arrow-sizer"></div>
               </div>
               <div id="top-vertical-line"></div>
-              <div id="dimension-box-sizer-left"><input id="wall-y" size="2" type="text" data-ng-model="wallStyleValues.height" /></div>
+              <div id="dimension-box-sizer-left"><input class="wall-input" id="wall-y" size="2" type="text" data-ng-model="wallStyleValues.height" /></div>
               <div id="top-vertical-line"></div>
               <div id="leftside-arrow-box">
                   <div id="black-bottom-arrow-sizer"></div>
@@ -58,7 +58,7 @@ scale:<input id="scale" />
               </div>
               <div id="middle-line-box">
               </div>
-              <div id="dimension-box-sizer-bottom"><input id="wall-x" size="2" type="text" data-ng-model="wallStyleValues.width" /></div>
+              <div id="dimension-box-sizer-bottom"><input class="wall-input"  id="wall-x" size="2" type="text" data-ng-model="wallStyleValues.width" /></div>
               <div id="middle-line-box">
               </div>
               <div id="right-arrow-box">
@@ -67,11 +67,12 @@ scale:<input id="scale" />
           </div>
         </div>
     </div>    
+		<!--
 		wall style {{wallStyle}} <br />
 		wall style values {{wallStyleValues}} <br />
 		image style {{imageStyle}}<br />
 		image {{image}}
-		
+		-->
         <!--<div class="form-group" id="mural-prop-toggle"> 
           <label class="check-box pull-right"> Show Props 
           <input id="mural-prop-toggle-check"checked type="checkbox"> </input>

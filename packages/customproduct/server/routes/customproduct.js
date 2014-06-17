@@ -1,10 +1,11 @@
 'use strict';
 
-var products = require('../controllers/products');
+
 var uploads = require('../controllers/service_uploads');
 var inkauth = require('../controllers/filepickerauth');
 var types = require('../controllers/product_types');
 var options = require('../controllers/product_options');
+var products = require('../controllers/products');
 
 // Product authorization helpers
 var hasAuthorization = function(req, res, next) {
@@ -33,16 +34,16 @@ module.exports = function(Customproduct, app, auth, database) {
         .get(auth.requiresAdmin, types.all)
         .post(auth.requiresAdmin, types.create);
     app.route('/admin/types/:typeId')
-        .get(auth.requiresAdmin, types.show)
+        .get(types.show)
         .put(auth.requiresAdmin, types.update)
         .delete(auth.requiresAdmin, types.destroy);
         
     app.route('/admin/options')
-        .get(auth.requiresAdmin, options.all)
+        .get(auth.requiresLogin, auth.requiresAdmin, options.all)
         .post(auth.requiresAdmin, options.create);
     app.route('/admin/options/:optionId')
-        .get(auth.requiresAdmin, options.show)
-        .put(auth.requiresAdmin, options.update)
+        .get(auth.requiresLogin, options.show)
+        .put(auth.requiresLogin, options.update)
         .delete(auth.requiresAdmin, options.destroy);
 
 		

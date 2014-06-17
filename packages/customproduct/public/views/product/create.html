@@ -6,7 +6,7 @@
                  
                     <div class="product_cell new_wallpaper" data-ng-repeat="type in (types | orderBy:'weight' )"
                       data-ng-style="{background:'url(/customproduct/assets/img/{{type.image_file_name}}) center center no-repeat', cursor:'pointer'}"
-                      data-ng-click="create(type._id)"
+                      data-ng-click="create(type)"
                     >
                       <p>{{type.title}}</p>
                     </div>

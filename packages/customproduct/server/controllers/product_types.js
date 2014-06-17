@@ -92,7 +92,7 @@ exports.show = function(req, res) {
  * List of ProductTypes
  */
 exports.all = function(req, res) {
-    ProductType.find().sort('-created').populate('user', 'name username').exec(function(err, ProductTypes) {
+    ProductType.find().sort('-created').populate('type_options').exec(function(err, ProductTypes) {
         if (err) {
             res.render('error', {
                 status: 500

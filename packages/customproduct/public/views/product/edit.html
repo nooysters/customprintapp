@@ -18,12 +18,16 @@
 </div>
 <form>
 <input ng-model="product.title"></input>
+
+<div data-ng-repeat="typeoption in product.type_values.type_options"  >
+<form-control-auto option="typeoption"></form-control-auto>
+</div>
 <li ng-model="product" ng-repeat="(key, value) in product">
 {{key}} -> {{value}}
 </li>
 
-<button ng-click="save()">Save</button>
-<a style="cursor: pointer" ng-click="destroy()">delete</a>
+<button ng-click="update()">Save</button>
+<a style="cursor: pointer" ng-click="remove()">delete</a>
 </form>
 
 </section>
