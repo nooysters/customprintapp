@@ -5,8 +5,65 @@
 <div>{{product.type}}</div>
 <div>{{product.id}}</div>
 
-<div img-crop ></div>
+<div class="col-lg-8 col-sm-12" img-crop ></div>
 <!--<img ng-src="{{product.files[currImage].large.file_path}}"/>-->
+
+<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 prod-specs"> 
+    <div >
+    <h4> Project Name: Space_Mural_Weirdness </h4>
+        <div class="form-group">
+        <label for="projectdescription" >Select Wallpaper Substrate</label>
+        <form action="">
+            <select class="form-control" name="Select Material">
+            <option value="Paper">Paper $5/square foot</option>
+            <option value="Gold Mylar">Gold Mylar $8/square foot</option>
+            <option value="SandStone">SandStone $8/square foot</option>
+            <option value="Topeka">Topeka $8/square foot</option>
+            <option value="Outdoor Adhesive">Outdoor Adhesive $10/square foot</option>
+            <option value="Face Skin">Face Skin $10/square foot</option>
+            <option value="holographic">Holographic $100/square foot</option>
+            </select>
+        </form>
+        </div>
+        <div class="form-group">
+            <div>
+                <label>Notes:</label>
+                <textarea class="form-control" rows="7" placeholder="Please Describe Your Project"></textarea>
+            </div>
+        </div>
+        <a href="#"  data-toggle="modal" data-target="#filterModal" ><h4>Effects & Filters<span id="effects_symbol"></span> </h3> </a> 
+        <div class="form-group">
+            <label class="checkbox order_sample">
+                <input type="checkbox" value="sample" class="whitetooltip" data-container="body" data-toggle="popover" data-placement="right" data-content="It's recommended you order a sample print before proceeding to the final print.">&nbsp;&nbsp;Order Printed Sample<br>
+            </label>
+        </div>
+    </div>
+        <table class="table table-hover table-bordered">
+            <tbody>
+                <tr>
+                    <td> Sample </td>
+                    <td> $20 </td>
+                </tr>
+                <tr>
+                    <td> Color Select </td>
+                    <td> $15 </td>
+                </tr>
+                <tr>
+                    <td> 300 Sq Feet/Paper </td>
+                    <td> $850 </td>
+                </tr>
+                <tr class="total">
+                    <td> Total </td>
+                    <td> $5000 </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="input-group">
+            <a href="" class="btn btn-lg btn-success"> Add To Cart </a>&nbsp;
+			<a href=""class="btn btn-lg btn-primary"> Save </a>
+        </div>
+    </div>
+</div>
 
 <div ng-repeat="file in product.files">
 </div>
