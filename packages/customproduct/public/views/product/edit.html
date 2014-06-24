@@ -4,9 +4,11 @@
 <div>{{product.title}}</div>
 <div>{{product.type}}</div>
 <div>{{product.id}}</div>
+
 <div class="row product-prev">
     <div class="col-lg-8 col-sm-12" img-crop ></div>
     <!--<img ng-src="{{product.files[currImage].large.file_path}}"/>-->
+    <div class="col-lg-4 col-sm-12 prod-specs">
         <div >
         <h4> Project Name: Space_Mural_Weirdness </h4>
             <div class="form-group">
@@ -62,7 +64,8 @@
             </div>
         </div>
     </div>
-    
+
+
 
 <div ng-repeat="file in product.files">
 </div>
