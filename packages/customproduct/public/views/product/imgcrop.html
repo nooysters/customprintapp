@@ -14,135 +14,86 @@ scale:<input id="scale" />
 </div>
 <div>
 -->
-
-
-
-
-<div class="row product-prev">
-    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">  
-        <div id="mural-stage-wrap" class="clearfix" data-ng-init="wallStyleValues = {width:600, height:480, scale:100}" > <!-- style="height:auto; width:auto; padding-left:60px;"-->
-        	
-        	scale:<input id="scale" data-ng-model="wallStyleValues.scale"/>
-        	<button id="wall-reset" data-ng-click="reset()">reset</button>{{message}}
-           <!-- <div id="left-shadow-mural-stage">
-                <img class="img-responsive" src="/sites/all/modules/custom/custom_product/images/left_shadow.png">
-            </div>-->
-            <div id="mural-stage-wall" >  <!--style="height:auto; width:auto;"-->
-            
-                  <div  class="v-wall" data-ng-style="wallStyle" > <!--style="width:600px; height:480px;"-->
-        						
-                    <img 
-						id="main-wall-image" 
-						data-ng-init="imageStyle = {}" 
-				 		data-ng-style="imageStyle" 
-						src="{{product.files[0].images[0].s3_url}}" 
-						class="main-img" 
-					/>
-        						
-                    <div id="loader"></div>
-                  </div> 
-                  
-                  <div class="left_arrow_wrapper" > <!--style="position:absolute"-->
-                      <div class="leftside-arrow-box">
-                          <div class="black-top-arrow-sizer"></div>
-                      </div>
-                      <div class="top-vertical-line"></div>
-                      <div class="dimension-box-sizer-left"><input id="wall-y" size="2" type="text" data-ng-model="wallStyleValues.height" /></div>
-                      <div class="top-vertical-line"></div>
-                      <div class="leftside-arrow-box">
-                          <div class="black-bottom-arrow-sizer"></div>
-                      </div>
-                  </div>
-                  <div class="bottom-arrow-wrapper" >  <!--style="position:absolute"-->
-                      <div class="left-arrow-box">
-                          <div class="black-left-arrow-sizer"></div>
-                      </div>
-                      <div class="middle-line-box">
-                      </div>
-                      <div class="dimension-box-sizer-bottom"><input id="wall-x" size="2" type="text" data-ng-model="wallStyleValues.width" /></div>
-                      <div class="middle-line-box">
-                      </div>
-                      <div class="right-arrow-box">
-                          <div class="black-right-arrow-sizer"></div>
-                      </div>    
-                  </div>
-                </div>
-            </div>    
-        		wall style {{wallStyle}} <br />
-        		wall style values {{wallStyleValues}} <br />
-        		image style {{imageStyle}}<br />
-        		image {{image}}
-        		
-                <!--<div class="form-group" id="mural-prop-toggle"> 
-                  <label class="check-box pull-right"> Show Props 
-                  <input id="mural-prop-toggle-check"checked type="checkbox"> </input>
-                  </label>
-                </div>
-                <div id="mural-props">
-                    <div id="chair-prop"></div>
-                    <div id="plant-prop"></div>
-                </div>-->
-        
-            <!--<div id="right-shadow-mural-stage">
-                <img class="img-responsive" src="/sites/all/modules/custom/custom_product/images/right_shadow.png">
-            </div>-->
+ 
+<div id="mural-stage-wrap" class="clearfix" data-ng-init="wallStyleValues = {width:600, height:480, scale:100}" > <!-- style="height:auto; width:auto; padding-left:60px;"-->
+	
+	scale:<input id="scale" data-ng-model="wallStyleValues.scale"/>
+	<button id="wall-reset" data-ng-click="reset()">reset</button>{{message}}
+   <!-- <div id="left-shadow-mural-stage">
+        <img class="img-responsive" src="/sites/all/modules/custom/custom_product/images/left_shadow.png">
+    </div>-->
+    <div id="mural-stage-wall" >  <!--style="height:auto; width:auto;"-->
+    
+          <div  class="v-wall" data-ng-style="wallStyle" > <!--style="width:600px; height:480px;"-->
+						
+            <img 
+				id="main-wall-image" 
+				data-ng-init="imageStyle = {}" 
+		 		data-ng-style="imageStyle" 
+				src="{{product.files[0].images[0].s3_url}}" 
+				class="main-img" 
+			/>
+						
+            <div id="loader"></div>
+          </div> 
+          
+          <div class="left_arrow_wrapper" > <!--style="position:absolute"-->
+              <div class="leftside-arrow-box">
+                  <div class="black-top-arrow-sizer"></div>
+              </div>
+              <div class="top-vertical-line"></div>
+              <div class="dimension-box-sizer-left"><input id="wall-y" size="2" type="text" data-ng-model="wallStyleValues.height" /></div>
+              <div class="top-vertical-line"></div>
+              <div class="leftside-arrow-box">
+                  <div class="black-bottom-arrow-sizer"></div>
+              </div>
+          </div>
+          <div class="bottom-arrow-wrapper" >  <!--style="position:absolute"-->
+              <div class="left-arrow-box">
+                  <div class="black-left-arrow-sizer"></div>
+              </div>
+              <div class="middle-line-box">
+              </div>
+              <div class="dimension-box-sizer-bottom"><input id="wall-x" size="2" type="text" data-ng-model="wallStyleValues.width" /></div>
+              <div class="middle-line-box">
+              </div>
+              <div class="right-arrow-box">
+                  <div class="black-right-arrow-sizer"></div>
+              </div>    
+          </div>
         </div>
+    </div>    
+		wall style {{wallStyle}} <br />
+		wall style values {{wallStyleValues}} <br />
+		image style {{imageStyle}}<br />
+		image {{image}}
+		
+        <!--<div class="form-group" id="mural-prop-toggle"> 
+          <label class="check-box pull-right"> Show Props 
+          <input id="mural-prop-toggle-check"checked type="checkbox"> </input>
+          </label>
+        </div>
+        <div id="mural-props">
+            <div id="chair-prop"></div>
+            <div id="plant-prop"></div>
+        </div>-->
+
+    <!--<div id="right-shadow-mural-stage">
+        <img class="img-responsive" src="/sites/all/modules/custom/custom_product/images/right_shadow.png">
+    </div>-->
+
         
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 prod-specs"> 
-                <div >
-                <h4> Project Name: Space_Mural_Weirdness </h4>
-                    <div class="form-group">
-                    <label for="projectdescription" >Select Wallpaper Substrate</label>
-                    <form action="">
-                        <select class="form-control" name="Select Material">
-                        <option value="Paper">Paper $5/square foot</option>
-                        <option value="Gold Mylar">Gold Mylar $8/square foot</option>
-                        <option value="SandStone">SandStone $8/square foot</option>
-                        <option value="Topeka">Topeka $8/square foot</option>
-                        <option value="Outdoor Adhesive">Outdoor Adhesive $10/square foot</option>
-                        <option value="Face Skin">Face Skin $10/square foot</option>
-                        <option value="holographic">Holographic $100/square foot</option>
-                        </select>
-                    </form>
-                    </div>
-                    <div class="form-group">
-                        <div>
-                            <label>Notes:</label>
-                            <textarea class="form-control" rows="7" placeholder="Please Describe Your Project"></textarea>
-                        </div>
-                    </div>
-                    <a href="#"  data-toggle="modal" data-target="#filterModal" ><h4>Effects & Filters<span id="effects_symbol"></span> </h3> </a> 
-                    <div class="form-group">
-                        <label class="checkbox order_sample">
-                            <input type="checkbox" value="sample" class="whitetooltip" data-container="body" data-toggle="popover" data-placement="right" data-content="It's recommended you order a sample print before proceeding to the final print.">&nbsp;&nbsp;Order Printed Sample<br>
-                        </label>
-                    </div>
-                </div>
-                <table class="table table-hover table-bordered">
-                    <tbody>
-                        <tr>
-                            <td> Sample </td>
-                            <td> $20 </td>
-                        </tr>
-                        <tr>
-                            <td> Color Select </td>
-                            <td> $15 </td>
-                        </tr>
-                        <tr>
-                            <td> 300 Sq Feet/Paper </td>
-                            <td> $850 </td>
-                        </tr>
-                        <tr class="total">
-                            <td> Total </td>
-                            <td> $5000 </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="input-group">
-                    <a href="finished.html" class="btn btn-lg btn-success"> Add To Cart </a>&nbsp;
-        			<a href="finished.html"class="btn btn-lg btn-primary"> Save </a>
-                </div>
-            </div>
+		<!--
+		wall style {{wallStyle}} <br />
+		wall style values {{wallStyleValues}} <br />
+		image style {{imageStyle}}<br />
+		image {{image}}
+		-->
+        <!--<div class="form-group" id="mural-prop-toggle"> 
+          <label class="check-box pull-right"> Show Props 
+          <input id="mural-prop-toggle-check"checked type="checkbox"> </input>
+          </label>
+>>>>>>> 0cc127a3e17cf80329778a2535ef55949cbdbad7
         </div>
     </div>
 </div>

@@ -1,0 +1,4 @@
+<span data-ng-repeat="optionn in option.values" >
+<input type="radio" data-ng-model="option.selected" data-ng-value="optionn.title" name="{{optionn._id}}">{{optionn.title}}</input>
+</span>
+<div>{{option.selected}}</div>

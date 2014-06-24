@@ -41,6 +41,9 @@ var ProductOptionSchema = new Schema({
       default: 'list',
       lowercase: true,
       trim: true
+    },
+    selected: {
+      type: Schema.Types.Mixed
     }
 });
 
@@ -52,6 +55,11 @@ ProductOptionSchema.path('title').validate(function(title) {
     return title.length;
 }, 'Title cannot be blank');
 
+ProductOptionSchema.statics.load = function(id, cb) {
+    this.findOne({
+        _id: id
+    }).exec(cb);
+};
 
 mongoose.model('ProductOption', ProductOptionSchema);
 
