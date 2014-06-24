@@ -10,17 +10,22 @@ angular.module('mean').controller('ProductsController', ['$scope', '$stateParams
             });
         };
         
-        $scope.create = function(typeId) {
-            var product = new Products({
-                title: 'Untitled',
-								type: typeId
-            });
-            product.$save(function(response) {
-                $location.path('upload/' + response._id);
-            });
+        $scope.create = function(type) {
 
-            this.title = '';
-            this.content = '';
+              var product = new Products({
+                title: 'Untitled',
+                type_values: type
+              });
+              
+              
+              
+              product.$save(function(response) {
+              console.log(response);
+                  $location.path('upload/' + response._id);
+              });
+  
+        
+           
         };
 
         $scope.remove = function(product) {
@@ -40,13 +45,14 @@ angular.module('mean').controller('ProductsController', ['$scope', '$stateParams
 
         $scope.update = function() {
             var product = $scope.product;
+    
             if (!product.updated) {
                 product.updated = [];
             }
-            product.updated.push(new Date().getTime());
+            product.updated = (new Date().getTime());
 
             product.$update(function() {
-                $location.path('products/' + product._id);
+               // $location.path('products/' + product._id);
             });
         };
 

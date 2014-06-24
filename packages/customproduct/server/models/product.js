@@ -3,7 +3,9 @@
 /**
  * Module dependencies.
  */
+require('../models/product_type');
 var mongoose = require('mongoose'),
+    //TypeSchema = mongoose.model('ProductType').schema,
     Schema = mongoose.Schema;
     
 /**
@@ -74,10 +76,9 @@ var ProductSchema = new Schema({
         default: '',
         trim: true
     },
-    type: {
-      type: Schema.Types.ObjectId, 
-      ref:'ProductType'
-    },
+    type_values: {
+      type: Schema.Types.Mixed
+    } ,
     user: {
         type: Schema.ObjectId,
         ref: 'User'
@@ -98,7 +99,7 @@ ProductSchema.path('title').validate(function(title) {
 ProductSchema.statics.load = function(id, cb) {
     this.findOne({
         _id: id
-    }).populate('user', 'name username').populate('type').exec(cb);
+    }).populate('user', 'name username').exec(cb);
 };
 
 mongoose.model('Product', ProductSchema);
