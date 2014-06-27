@@ -9,51 +9,45 @@ angular.module('mean').controller('ProductsController', ['$scope', '$stateParams
                 $scope.types = types;
             });
         };
-        
+                
         $scope.create = function(type) {
-
-              var product = new Products({
-                title: 'Untitled',
-                type_values: type
-              });
-              
-              
-              
-              product.$save(function(response) {
-              console.log(response);
-                  $location.path('upload/' + response._id);
-              });
-  
-        
-           
+          var product = new Products({
+            title: 'Untitled',
+            type_values: type
+          });
+          
+          product.$save(function(response) {
+          console.log(response);
+              $location.path('upload/' + response._id);
+          });
         };
 
         $scope.remove = function(product) {
-            if (product) {
-                product.$remove();
+          if (product) {
+              product.$remove();
 
-                for (var i in $scope.products) {
-                    if ($scope.products[i] === product) {
-                        $scope.products.splice(i, 1);
-                    }
-                }
-            } else {
-                $scope.product.$remove();
-                $location.path('products');
-            }
+              for (var i in $scope.products) {
+                  if ($scope.products[i] === product) {
+                      $scope.products.splice(i, 1);
+                  }
+              }
+          } else {
+              $scope.product.$remove();
+              $location.path('products');
+          }
         };
 
         $scope.update = function() {
-            var product = $scope.product;
-    
-            if (!product.updated) {
-                product.updated = [];
-            }
-            product.updated = (new Date().getTime());
+          var product = $scope.product;
+  
+          if (!product.updated) {
+              product.updated = [];
+          }
+          product.updated = (new Date().getTime());
 
-            product.$update(function() {
-               // $location.path('products/' + product._id);
-            });
+          product.$update(function() {
+             // $location.path('products/' + product._id);
+          });
         };
 
         $scope.findByUser = function() {
@@ -68,7 +62,7 @@ angular.module('mean').controller('ProductsController', ['$scope', '$stateParams
                 $scope.products = products;
             });
         };
-
+        
         $scope.findOne = function() {
             Products.get({
                 productId: $stateParams.productId,

@@ -1,40 +1,25 @@
-<!--
-<div style="width:600px; height: 600px;">
-w:<input id="wall-x" />
-h:<input id="wall-y" />
-scale:<input id="scale" />
-<label for="locked">locked</label><input id="locked" type="checkbox">
-<label for="tile">tile image</label><input id="locked" type="checkbox">
-
-<input id="originalWidth" type="hidden" value="{{product.files[currImage].original.pixel_width}}" />
-<input id="originalHeight" type="hidden" value="{{product.files[currImage].original.pixel_height}}" />
-<div class="v-wall" style="width:600px; height:480px;">
-<div id="loader"></div>
-<img src="{{product.files[currImage].large.file_path}}" class="main-img" />
-</div>
-<div>
--->
- 
-<div id="mural-stage-wrap" class="clearfix" data-ng-init="wallStyleValues = {width:600, height:480, scale:100}" > <!-- style="height:auto; width:auto; padding-left:60px;"-->
+<div class="mural-stage-wrap" class="clearfix" data-ng-init="wallStyleValues = {width:600, height:480, scale:100, overflow:hidden}" > <!-- style="height:auto; width:auto; padding-left:60px;"-->
 	
-	scale:<input id="scale" data-ng-model="wallStyleValues.scale"/>
-	<button id="wall-reset" data-ng-click="reset()">reset</button>{{message}}
-   <!-- <div id="left-shadow-mural-stage">
-        <img class="img-responsive" src="/sites/all/modules/custom/custom_product/images/left_shadow.png">
-    </div>-->
-    <div id="mural-stage-wall" >  <!--style="height:auto; width:auto;"-->
+	scale:<input class="wall-input" id="scale" data-ng-model="wallStyleValues.scale"/>
+	<button id="wall-reset" data-ng-click="init()">reset</button>
+  <button data-ng-click="zoomIn()" >+</button>
+  <button data-ng-click="zoomOut()" >-</button>
+	{{message}}
+
+    <div class="mural-stage-wall" >  <!--style="height:auto; width:auto;"-->
     
           <div  class="v-wall" data-ng-style="wallStyle" > <!--style="width:600px; height:480px;"-->
 						
             <img 
-				id="main-wall-image" 
-				data-ng-init="imageStyle = {}" 
-		 		data-ng-style="imageStyle" 
-				src="{{product.files[0].images[0].s3_url}}" 
-				class="main-img" 
-			/>
+								id="main-wall-image" 
+								class= "main-wall-image"
+								data-ng-init="imageStyle = {}" 
+						 		data-ng-style="imageStyle" 
+								src="{{product.files[0].images[0].s3_url}}" 
+								class="main-img" 
+						/>
 						
-            <div id="loader"></div>
+            <div class="loader"></div>
           </div> 
           
           <div class="left_arrow_wrapper" > <!--style="position:absolute"-->
@@ -42,7 +27,7 @@ scale:<input id="scale" />
                   <div class="black-top-arrow-sizer"></div>
               </div>
               <div class="top-vertical-line"></div>
-              <div class="dimension-box-sizer-left"><input id="wall-y" size="2" type="text" data-ng-model="wallStyleValues.height" /></div>
+              <div class="dimension-box-sizer-left"><input class="wall-input " id="wall-y" size="2" type="text" data-ng-model="wallStyleValues.height" /></div>
               <div class="top-vertical-line"></div>
               <div class="leftside-arrow-box">
                   <div class="black-bottom-arrow-sizer"></div>
@@ -54,7 +39,7 @@ scale:<input id="scale" />
               </div>
               <div class="middle-line-box">
               </div>
-              <div class="dimension-box-sizer-bottom"><input id="wall-x" size="2" type="text" data-ng-model="wallStyleValues.width" /></div>
+              <div class="dimension-box-sizer-bottom"><input class="wall-input"  id="wall-x" size="2" type="text" data-ng-model="wallStyleValues.width" /></div>
               <div class="middle-line-box">
               </div>
               <div class="right-arrow-box">
@@ -62,11 +47,7 @@ scale:<input id="scale" />
               </div>    
           </div>
         </div>
-    </div>    
-		wall style {{wallStyle}} <br />
-		wall style values {{wallStyleValues}} <br />
-		image style {{imageStyle}}<br />
-		image {{image}}
+    </div>  
 		
         <!--<div class="form-group" id="mural-prop-toggle"> 
           <label class="check-box pull-right"> Show Props 

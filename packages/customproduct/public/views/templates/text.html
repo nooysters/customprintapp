@@ -1,1 +1,1 @@
-<input data-ng-model="option.selected" data-ng-options="options.title as options.title for options in option.values"></input>
+<input class="form-control" data-ng-model="option.value"  data-ng-change="updateSelectedA({value: option.value, price: option.values[0].price, title:option.values[0].title})"></input>

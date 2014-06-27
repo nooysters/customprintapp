@@ -30,6 +30,17 @@ angular.module('mean').directive('formControlAuto', ['$compile', '$http', '$temp
 	    option: '='
     },
     link: function(scope, element, attrs) {
+    
+      if(!scope.option.selected) scope.option.selected = [];
+      
+    	scope.updateSelected = function(option, $index) {
+    	 scope.option.selected[$index] = option;      	
+    	};
+    	
+      scope.updateSelectedA = function(option) {
+    	 scope.option.selected = option;      	
+    	};
+    	
       var type = scope.option.display_type;
       if(type === 'checkbox/radio') {
         if(scope.option.select_multiple)

@@ -78,7 +78,10 @@ var ProductSchema = new Schema({
     },
     type_values: {
       type: Schema.Types.Mixed
-    } ,
+    },
+    selected_options: {
+      type: Schema.Types.Mixed
+    },
     user: {
         type: Schema.ObjectId,
         ref: 'User'

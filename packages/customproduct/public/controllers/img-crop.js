@@ -7,7 +7,6 @@ angular.module('mean').directive('imgCrop', function() {
 	    restrict: 'A',
 	    scope: true,
 	    templateUrl: 'customproduct/views/product/imgcrop.html',
-	    //transclude: true,
 	    link: function(scope, ele, attrs) {
 			
 	      
@@ -74,12 +73,10 @@ angular.module('mean').directive('imgCrop', function() {
   					if(x && y) resizeWall(x, y); 
   					if(scope.product) getImageScale();  
 
-				  });
-
-									
+				  });			
 				});
 
-				function setInitalWallSize() {
+				var setInitalWallSize = function() {
 					getImageScale();
 					while(scope.image.x * scope.image.y < 10) {
 							scope.wallStyleValues.scale ++;
@@ -94,18 +91,18 @@ angular.module('mean').directive('imgCrop', function() {
 				  scope.wallStyleValues.width = (scope.image.x > 2) ? scope.image.x : 2;
 					scope.wallStyleValues.height = (scope.image.y > 2) ? scope.image.y : 2;
           resizeWall(scope.wallStyleValues.width, scope.wallStyleValues.height);
-				}
+				};
 				
 				/**
 				 * Sizes image to scale based on 72 dpi and the wall size.
 				 */
-				function scaleImage(d1,d2) {
+				var scaleImage = function (d1,d2) {
 					if(d1 && d2) {
 					 return maxWallSize / d1 / 864 * d2 * (scope.wallStyleValues.scale /100);
 					}
-				}
+				};
 			 
-				function getImageScale() {
+				var getImageScale = function() {
 					var wx = parseFloat(scope.wallStyleValues.width);
 					var wy = parseFloat(scope.wallStyleValues.height);
 					
@@ -120,9 +117,9 @@ angular.module('mean').directive('imgCrop', function() {
 					var height = scaleImage(r1, scope.product.files[0].original_meta.height);
 					
 					scope.setImageSize(width, height);
-				}
+				};
 				
-	      function resizeWall(x, y) {
+	     var resizeWall = function(x, y) {
 	        var w =  convertDecimalFeet(x);
 	        var h =  convertDecimalFeet(y);
 	        var $height, $width;
@@ -137,9 +134,9 @@ angular.module('mean').directive('imgCrop', function() {
 	        }
      		 	scope.setWallStyle($width, $height);
      		 	getImageScale();
-	      }
+	      };
 				
-	      function convertFeetInches(dim) {
+	      var convertFeetInches = function(dim) {
 					if(isNaN(dim)) dim = convertDecimalFeet(dim);
 				
 	        var feet = parseInt(dim/1);
@@ -147,9 +144,9 @@ angular.module('mean').directive('imgCrop', function() {
 	        var inches = parseInt((dim%1) * 12);
 				
 	        return feet + '\' ' + inches + '\"';
-	      }
+	      };
       
-	      function convertDecimalFeet(string) {
+	      var convertDecimalFeet = function(string) {
 	        var re = /^(\d+)\s*[']?\s*(\d+)?\s*["]?/g; 					
 	        var m;
 					
@@ -167,7 +164,7 @@ angular.module('mean').directive('imgCrop', function() {
 	          if(dims) return   dims;
 						return 'error';
 	        }
-	      }
+	      };
 	      
 	    // handles the dragging  
       var startX = 0, startY = 0, x = 0, y = 0; // variables to track the dragging of img.
@@ -187,19 +184,19 @@ angular.module('mean').directive('imgCrop', function() {
 	      $(document).on('mouseup', mouseup);
 	    });
     
-	    function mousemove(event) {
+	    var mousemove = function(event) {
 	      y = event.pageY - startY;
 	      x = event.pageX - startX;
 	      img.css({
 	        top: y + 'px',
 	        left:  x + 'px'
 	      });
-	    }
+	    };
     
-	    function mouseup() {
+	    var mouseup = function() {
 	      $(document).off('mousemove', mousemove);
 	      $(document).off('mouseup', mouseup);
-	    }
+	    };
 
 		}
     
