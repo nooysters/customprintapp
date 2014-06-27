@@ -4,7 +4,7 @@
             <span>{{product.created | date:'medium'}}</span> /
             <span>{{product.user.name}}</span>
             <h2><a data-ng-href="#!/products/{{product._id}}/edit">{{product.title}}</a></h2>
-            <div>{{product}}</div>
+            <div></div>
         </li>
     </ul>
     <h1 data-ng-hide="!products || products.length">No products yet. <br> Why don't you <a href="/#!/products/create">Create One</a>?</h1>

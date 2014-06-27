@@ -11,9 +11,8 @@ angular.module('mean').controller('UploadsController', ['$scope', '$stateParams'
 
     $scope.isLoaded = false;
     
-    var times = 10; //number of times to attempt to poll for the image. 
+    var times = 10;
     var Pid;
-    
     function isImage(src) {
     
         var deferred = $q.defer();
@@ -30,19 +29,12 @@ angular.module('mean').controller('UploadsController', ['$scope', '$stateParams'
         return deferred.promise;
     }
     
-    var times = 10;
+    var timeouts = [];
     var waitForImage = function(url) {
       $timeout(function(){
         isImage(url).then(function(res) {
-          if(res === false) {
-            if(times > 0) {
-              times--;
-              timeouts.push($timeout(function(){waitForImage(url)}, 3000, false));
-            }
-            else {
-              $scope.err = 'The image may need additional processing time. check back later by clicking on my products.' 
-            }
-          }
+          if(res === false)
+            timeouts.push($timeout(function(){waitForImage(url)}, 3000, false));
           else {
             $location.path('products/' + Pid + '/edit');
           }
@@ -98,7 +90,6 @@ angular.module('mean').controller('UploadsController', ['$scope', '$stateParams'
 						    	$scope.err = FPError.toString();
 						    }
 						 );
-						 
 					}).
 					error(function(data, status, headers, config) {
 						console.log(data);
