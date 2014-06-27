@@ -1,0 +1,12 @@
+<table class="table table-hover table-bordered">
+<tbody>
+    <tr data-ng-repeat="option in displayOptions" >
+        <td> {{option.title}} <span  data-ng-hide="option.value == true">: {{option.value}}</span> </td>
+        <td> <span data-ng-hide="option.price == '-'">$</span><span>{{option.price}}</span></td>
+    </tr>
+    <tr >
+        <td> Subtotal (tax and shipping not included)</td>
+        <td><span> ${{subtotal}}</span></td>
+    </tr>
+</tbody>
+</table>
